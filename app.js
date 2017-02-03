@@ -14,11 +14,13 @@ app.use(bodyParser.json());
 app.set('port', process.env.port || 3000);
 
 app.post('/trigger', function(req, res) {
-    return handlers.trigger(req);
-});
-
-app.post('/login', function(req, res) {
-    return handlers.login(res);
+    return handlers.trigger(req)
+        .then(function(success) {
+            if (success) {
+                res.status(200).send();
+            }
+            res.status(500).send();
+        });
 });
 
 app.use(function(req, res) {

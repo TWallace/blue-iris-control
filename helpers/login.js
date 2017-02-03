@@ -2,7 +2,7 @@
 
 var config = require('config-yml'),
     http = require('request-promise'),
-    md5 = require('../helpers/md5Hash.js');
+    md5 = require('./md5Hash.js');
 
 module.exports = function() {
     var options = {

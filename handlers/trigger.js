@@ -2,8 +2,7 @@
 
 var config = require('config-yml'),
     http = require('request-promise'),
-    login = require('./login.js'),
-    md5 = require('../helpers/md5Hash.js'),
+    login = require('../helpers/login.js'),
     session;
 
 function trigger(req, session) {
@@ -23,6 +22,7 @@ function trigger(req, session) {
             if (response.result === 'fail') {
                 throw new Error('Could not trigger camera ' + camera);
             }
+            return true;
         })
         .catch(function(error) {
             console.error(error);
@@ -32,8 +32,9 @@ function trigger(req, session) {
 
 module.exports = function(req) {
     return !session
-        ? login().then(function(loginResponse) {
-                return trigger(req, loginResponse);
+        ? login().then(function(response) {
+                session = response;
+                return trigger(req, response);
             })
-        : trigger();
+        : trigger(req, session);
 };
