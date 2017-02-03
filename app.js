@@ -2,12 +2,23 @@
 
 var express = require('express'),
     handlers = require('require-all')(__dirname + '/handlers'),
-    app = express();
+    app = express(),
+    bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
 
 app.set('port', process.env.port || 3000);
 
 app.post('/trigger', function(req, res) {
     return handlers.trigger(req);
+});
+
+app.post('/login', function(req, res) {
+    return handlers.login(res);
 });
 
 app.use(function(req, res) {
