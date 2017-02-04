@@ -10,10 +10,21 @@
     "type": "git",
     "url": "git+https://github.com/tmwllc/blue-iris-control.git"
   },
-  "author": "Tom Wallace <tom.wallace@nordstrom.com>",
+  "author": "Tom Wallace <tomwallace75@hotmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tmwllc/blue-iris-control/issues"
   },
-  "homepage": "https://github.com/tmwllc/blue-iris-control#readme"
+  "homepage": "https://github.com/tmwllc/blue-iris-control#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.16.0",
+    "config-yml": "^0.6.1",
+    "express": "^4.14.1",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
+    "require-all": "^2.1.0"
+  }
 }
