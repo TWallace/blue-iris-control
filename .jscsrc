@@ -64,7 +64,7 @@
 	"requireSpaceBeforeObjectValues": true,
 	"requireSpacesInConditionalExpression": true,
 	"requireSpacesInsideObjectBrackets": "all",
-	"validateIndentation": 4,
+	"validateIndentation": 2,
 	"validateParameterSeparator": ", ",
 	"validateQuoteMarks": "'"
 }
