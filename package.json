@@ -4,7 +4,7 @@
   "description": "Node server which can send commands to Blue Iris to trigger motion alerts.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node src/app"
   },
   "repository": {
     "type": "git",
@@ -19,15 +19,19 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.16.0",
+    "child_process": "^1.0.2",
     "config-yml": "^0.6.1",
     "express": "^4.14.1",
     "lodash": "^4.17.4",
     "md5": "^2.2.1",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
-    "require-all": "^2.1.0"
+    "require-all": "^2.1.0",
+    "uuid": "^3.0.1",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1"
   }
 }

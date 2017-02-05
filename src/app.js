@@ -3,11 +3,13 @@
 var express = require('express'),
   handlers = require('require-all')(__dirname + '/handlers'),
   app = express(),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  logger = require('../util/logger.js')(module),
+  uuid = require('uuid');
 
 function handleErrors(error, req, res) {
-  console.error(error.stack);
-  return res.status(505).send('Internal Server Error');
+  logger.error(error.stack);
+  return res.status(500).send(error.message);
 }
 
 app.use(bodyParser.urlencoded({
@@ -19,6 +21,7 @@ app.use(bodyParser.json());
 app.set('port', process.env.port || 3000);
 
 app.post('/trigger', function (req, res) {
+  req.headers.correlationId = req.headers.correlationId || uuid.v4();
   return handlers.trigger(req)
     .then(function (success) {
       if (success) {
@@ -36,10 +39,10 @@ app.use(function (req, res) {
 });
 
 app.use(function (error, req, res, next) {
-  console.error(error.stack);
+  logger.error(error.stack);
   res.status(505).send('Internal Server Error');
 });
 
 app.listen(app.get('port'), function () {
-  console.log('Example app listening on port 3000');
+  logger.info('Example app listening on port 3000');
 });
