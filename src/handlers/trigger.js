@@ -3,7 +3,8 @@
 var config = require('config-yml'),
   http = require('request-promise'),
   listCameras = require('../helpers/listCameras.js'),
-  login = require('../helpers/login.js');
+  login = require('../helpers/login.js'),
+  errors = require('../errors.js');
 
 function trigger(req, session) {
   var camera = req.body.camera,
@@ -21,7 +22,7 @@ function trigger(req, session) {
     if (response.result === 'fail') {
       return listCameras(options)
         .then(function(response) {
-          throw new Error('Could not trigger camera ' + camera + '. Valid camera names are: ' + response.join(', '));
+          throw new errors.CameraNotFound('Could not trigger camera ' + camera + '. Valid camera names are: ' + response.join(', '));
         });
     }
     return true;

@@ -32,6 +32,12 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-apidoc": "^0.2.5",
     "gulp-nodemon": "^2.2.1"
+  },
+  "apidoc": {
+	"name": "Blue Iris Control",
+	"version": "1.0.0",
+	"url": "http://localhost:3000"
   }
 }
