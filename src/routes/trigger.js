@@ -7,17 +7,15 @@
  *
  * @apiParam {String} camera - Camera name
  *
- * @apiSuccess {String} firstname Firstname of the User.
- *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *
- * @apiError UserNotFound The id of the User was not found.
+ * @apiError CameraNotFound Could not trigger camera CameraTest. Valid camera names are: camera1, camera2, etc.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": "UserNotFound"
+ *       "error": "CameraNotFound"
  *     }
  */
 
