@@ -2,7 +2,7 @@
 
 var config = require('config-yml'),
   http = require('request-promise'),
-  listCameras = require('../helpers/listCameras.js'),
+  listCameras = require('./listCameras.js'),
   login = require('../helpers/login.js'),
   errors = require('../errors.js');
 
@@ -18,15 +18,16 @@ function trigger(req, session) {
       },
       json: true
     };
-  return http.post(options).then(function (response) {
-    if (response.result === 'fail') {
-      return listCameras(options)
-        .then(function(response) {
-          throw new errors.CameraNotFound('Could not trigger camera ' + camera + '. Valid camera names are: ' + response.join(', '));
-        });
-    }
-    return true;
-  });
+  return http.post(options)
+    .then(function (response) {
+      if (response.result === 'fail') {
+        return listCameras(session)
+          .then(function(response) {
+            throw new errors.CameraNotFound('Could not trigger camera ' + camera + '. Valid camera names are: ' + response.join(', '));
+          });
+      }
+      return true;
+    });
 }
 
 module.exports = function (req) {

@@ -31,5 +31,5 @@ app.use(function (error, req, res) {
 });
 
 app.listen(app.get('port'), function () {
-  logger.info('Example app listening on port 3000');
+  logger.info('Blue Iris Control listening on port 3000');
 });

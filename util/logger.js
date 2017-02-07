@@ -7,7 +7,7 @@ var winston = require('winston'),
   };
 
 function getModuleName(filename) {
-  return _.last(filename.split('\\')).replace('.js', '').toUpperCase();
+  return _.last(filename.split(/\\|\//)).replace('.js', '').toUpperCase();
 }
 
 module.exports = function (src) {
