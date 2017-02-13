@@ -2,6 +2,7 @@
 
 var config = require('config-yml'),
   http = require('request-promise'),
+  logger = require('../../util/logger.js')(module),
   listCameras = require('./listCameras.js'),
   login = require('../helpers/login.js'),
   errors = require('../errors.js');
@@ -26,6 +27,7 @@ function trigger(req, session) {
             throw new errors.CameraNotFound('Could not trigger camera ' + camera + '. Valid camera names are: ' + response.join(', '));
           });
       }
+      logger.info('Successfully triggered camera: %s', camera);
       return true;
     });
 }
