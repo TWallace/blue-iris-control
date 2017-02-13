@@ -27,7 +27,6 @@ function trigger(req, session) {
             throw new errors.CameraNotFound('Could not trigger camera ' + camera + '. Valid camera names are: ' + response.join(', '));
           });
       }
-      logger.info('Successfully triggered camera: %s', camera);
       return true;
     });
 }
