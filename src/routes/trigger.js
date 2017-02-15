@@ -5,7 +5,7 @@
  * @apiName Trigger Cameras
  * @apiGroup Camera
  *
- * @apiParam {String} camera - Camera name
+ * @apiParam {Array} camera - Camera name (can be passed in as an array of cameras names, or just a string for one camera.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
