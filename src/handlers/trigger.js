@@ -1,6 +1,8 @@
 'use strict';
 
 var config = require('config-yml'),
+  _ = require('lodash'),
+  Promise = require('bluebird'),
   http = require('request-promise'),
   logger = require('../../util/logger.js')(module),
   listCameras = require('./listCameras.js'),
@@ -8,7 +10,7 @@ var config = require('config-yml'),
   errors = require('../errors.js');
 
 function trigger(req, session) {
-  var camera = req.body.camera,
+  var camera = req.camera,
     options = {
       method: 'POST',
       uri: config.blueIrisUrl,
@@ -33,7 +35,10 @@ function trigger(req, session) {
 
 module.exports = function (req) {
   return login()
-    .then(function (response) {
-      return trigger(req, response);
+    .then(function (session) {
+      var cameras = Array.isArray(req.body.camera) ? req.body.camera : [req.body.camera];
+      return Promise.map(cameras, function(camera) {
+       return trigger({ camera: camera }, session);
+      });
     });
 };
