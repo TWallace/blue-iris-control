@@ -25,6 +25,11 @@ var trigger = require('../handlers/trigger.js'),
 
 module.exports = function(app) {
   app.post('/trigger', function (req, res) {
+    try {
+      logger.info('Trigger called with body: %s', JSON.stringify(req.body));
+    } catch(error) {
+      logger.info('Could not JSON.stringify(req.body): %s', req.body);
+    }
     req.headers.correlationId = req.headers.correlationId || uuid.v4();
     return trigger(req)
       .then(function (success) {
