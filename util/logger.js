@@ -3,7 +3,12 @@
 var winston = require('winston'),
   _ = require('lodash'),
   tsFormat = function () {
-    return new Date().toLocaleTimeString();
+    return new Date().toLocaleTimeString('en-US', {
+      weekDay: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   };
 
 function getModuleName(filename) {
