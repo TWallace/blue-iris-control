@@ -35,7 +35,7 @@ function trigger(req, session) {
 module.exports = function (req) {
   return login()
     .then(function (session) {
-      var cameras = Array.isArray(req.body.camera) ? req.body.camera : [req.body.camera];
+      var cameras = req.body.camera.replace(/\[|\]|\'/g, '').split(',');
       return Promise.map(cameras, function (camera) {
         return trigger({ camera: camera }, session);
       });
