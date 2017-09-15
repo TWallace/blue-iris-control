@@ -24,12 +24,6 @@ module.exports = function (src) {
         colorize: true,
         label: getModuleName(src.filename)
       })
-      // new (winston.transports.File)({
-      //   timestamp: tsFormat,
-      //   colorize: true,
-      //   label: getModuleName(src.filename),
-      //   filename: 'app.log'
-      // })
     ]
   });
 
