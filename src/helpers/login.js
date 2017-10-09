@@ -19,9 +19,8 @@ module.exports = function () {
   logger.info('Attempting to login to Blue Iris');
   return http.post(options)
   .then(function (response) {
-    if (response.result === 'fail') {
+    if (response.result === 'fail' && response.data.reason !== 'missing response') {
       logger.error('Blue Iris login response: ' + JSON.stringify(response));
-      throw new Error('Could not login to Blue Iris: ' + response.data.reason);
     }
     var session = response.session;
     if (session) {
