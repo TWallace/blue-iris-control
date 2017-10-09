@@ -25,7 +25,7 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         logger.error(error.message);
-        res.status(error.statusCode).send(error.message);
+        res.status(error.statusCode || 500).send(error.message);
       });
   });
 };

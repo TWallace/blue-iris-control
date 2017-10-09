@@ -36,8 +36,8 @@
     "gulp-nodemon": "^2.2.1"
   },
   "apidoc": {
-	"name": "Blue Iris Control",
-	"version": "1.0.0",
-	"url": "http://localhost:3000"
+    "name": "Blue Iris Control",
+    "version": "1.0.0",
+    "url": "http://localhost:3000"
   }
 }

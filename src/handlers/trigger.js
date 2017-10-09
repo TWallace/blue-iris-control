@@ -18,7 +18,8 @@ function trigger(req, session) {
         camera: camera,
         session: session
       },
-      json: true
+      json: true,
+      timeout: 5000
     };
   return http.post(options)
     .then(function (response) {
